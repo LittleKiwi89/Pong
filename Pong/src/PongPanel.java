@@ -13,6 +13,18 @@ import java.awt.BasicStroke;
 public class PongPanel extends JPanel implements ActionListener, KeyListener {
 	private final static Color BACKGROUND_COLOUR = Color.BLACK;
 	private final static int TIMER_DELAY = 5;
+	boolean gameInitialised = false;
+	Ball ball;
+	
+	public void createObjects() {
+		ball= new Ball(getWidth(), getHeight());
+	}
+	
+	public void paintSprite(Graphics g, Sprite sprite) {
+		g.setColor(sprite.getColour());
+		g.fillRect(sprite.getxPosition(), sprite.getyPosition(), sprite.getWidth(), sprite.getHeight());
+		
+	}
 	
 	public PongPanel() {
 		setBackground(BACKGROUND_COLOUR);
@@ -37,19 +49,28 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	private void update() {
+		if(!gameInitialised) {
+			createObjects();
+			gameInitialised = true;
+		}
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent event) {
-		// TODO Auto-generated method stub
+		update();
+		repaint();
 		
 	}
 	
- 
-@Override
+ @Override
 public void paintComponent(Graphics g) {
 	super.paintComponent(g);
 	paintDottedLine(g);
-	
+	if(gameInitialised) {
+		paintSprite(g, ball);
+	}
 }
 
 private void paintDottedLine(Graphics g) {

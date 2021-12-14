@@ -1,5 +1,6 @@
-import java.awt.event.ActionEvent;
+
 import javax.swing.JFrame;
+
 
 
 
@@ -26,16 +27,6 @@ public class Pong extends JFrame {
 				new Pong();
 			}
 		});}
-	
-	
-	
-	private void update() {
-		
-	}
-	
-	public void actionPerformed(ActionEvent event) {
-		update();
-		repaint();
-	}
+
 
 }
